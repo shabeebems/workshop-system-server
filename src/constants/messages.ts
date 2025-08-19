@@ -7,6 +7,12 @@ export enum Messages {
   USER_NOT_FOUND = "❌ No account found with the provided email address.",
 
   LOGOUT_SUCCESS = "✅ Logged out successfully.",
-  INTERNAL_SERVER_ERROR = "❌ Server error"
+  INTERNAL_SERVER_ERROR = "❌ Server error",
+
+  // Token & Authorization Messages
+  ACCESS_TOKEN_INVALID = "❌ Access token verification failed.",
+  REFRESH_TOKEN_INVALID = "❌ Refresh token verification failed.",
+  NO_TOKEN = "❌ No authentication tokens found in the request.",
+  UNAUTHORIZED_ACCESS = "❌ You are not authorized to access this resource."
 
 }

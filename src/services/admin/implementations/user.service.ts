@@ -6,6 +6,6 @@ export class UserService implements IUserService {
 
     public async check(): Promise<ServiceResponse> {
         console.log('Admin api calling')
-        return { success: true, message: Messages.FETCH_USERS_SUCCESS };
+        return { success: true, message: "Admin api calling" };
     }
 }
