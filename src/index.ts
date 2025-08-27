@@ -7,7 +7,14 @@ import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth.routes';
 import adminRouter from './routes/admin.routes';
 
+console.log("my name is adil")
+console.log('🔧 Loading environment variables...');
 dotenv.config();
+console.log('🔧 Environment check:');
+console.log('PORT:', process.env.PORT);
+console.log('MONGO_URI exists:', !!process.env.MONGO_URI);
+console.log('MONGO_URI length:', process.env.MONGO_URI?.length || 0);
+     
 connectDB();
 
 const app = express();

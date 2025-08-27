@@ -34,4 +34,7 @@ export class AuthController implements IAuthController {
     public logout = (req: Request, res: Response): Promise<void> =>
         this.handleRequest(res, () => this.authService.logout(res));
 
+    public me = (req: Request, res: Response): Promise<void> =>
+        this.handleRequest(res, () => this.authService.me(req, res));
+
 }

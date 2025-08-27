@@ -9,5 +9,6 @@ const authController = new AuthController();
 
 authRouter.post('/login', validate(loginSchema), authController.login);
 authRouter.post('/logout', authController.logout);
+authRouter.get('/me', authController.me);
 
 export default authRouter;
