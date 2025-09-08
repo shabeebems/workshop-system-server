@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 interface TokenPayload {
     _id: any;
     email: string;
-    role: string;
 }
 
 
@@ -20,7 +19,6 @@ export const createAccessToken = async (res: Response , payload: TokenPayload) =
         sameSite: 'strict',
         path: '/'
     });
-    return accessToken
 }
 
 export const createRefreshToken = async (res: Response , payload: TokenPayload) => {

@@ -1,5 +1,4 @@
 import { Response } from "express";
-import bcrypt from "bcrypt";
 
 import { clearAccessToken, clearRefreshToken, createAccessToken, createRefreshToken } from "../../../utils/jwt";
 import { UserRepository } from "../../../repositories/implementations/user.repositories";
@@ -9,7 +8,7 @@ import { Messages } from "../../../constants/messages";
 export class AuthService implements IAuthService {
     private userRepository = new UserRepository();
 
-    public async login(res: Response, data: { email: string; password: string; role: string }): Promise<ServiceResponse> {
+    public async login(res: Response, data: { email: string; password: string }): Promise<ServiceResponse> {
         
         const user = await this.userRepository.findByEmail(data.email);
         if (!user) return { success: false, message: Messages.USER_NOT_FOUND };
@@ -18,12 +17,13 @@ export class AuthService implements IAuthService {
         
         if (user.isBlock) return { success: false, message: Messages.USER_BLOCKED };
 
-        const { _id, email, role } = user
-        const payload = { _id, email, role };
-        const token = await createAccessToken(res, payload);
+        const { _id, email } = user
+        const payload = { _id, email };
+
+        await createAccessToken(res, payload);
         await createRefreshToken(res, payload);
         
-        return { success: true, message: Messages.LOGIN_SUCCESS, data: { token, user } };
+        return { success: true, message: Messages.LOGIN_SUCCESS, data: user };
     }
 
     public async logout(res: Response): Promise<ServiceResponse> {
