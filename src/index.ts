@@ -5,7 +5,7 @@ import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth.routes';
-import adminRouter from './routes/admin.routes';
+import workshopRouter from './routes/workshop.routes';
 
 dotenv.config();
 connectDB();
@@ -30,7 +30,7 @@ app.use(session({
 
 
 app.use('/api/auth', authRouter);
-app.use('/api/admin', adminRouter);
+app.use('/api/workshop', workshopRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
