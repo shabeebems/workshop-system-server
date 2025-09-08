@@ -17,7 +17,7 @@ const UserSchema: Schema<IUser> = new Schema(
         email: { type: String, required: true, unique: true, lowercase: true, trim: true },
         mobile: { type: Number },
         password: { type: String, trim: true },
-        role: { type: String, enum: ['staff', 'admin'] },
+        role: { type: String, enum: ['staff', 'admin'], default: "admin" },
         isBlock: { type: Boolean, default: false }
     },
     { timestamps: true }

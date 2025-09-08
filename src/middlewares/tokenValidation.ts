@@ -45,7 +45,7 @@ export const authenticateToken = (allowedRoles: string[]) => {
 
                     return
                 }
-
+                
                 if(!allowedRoles.includes(userDetails.role)) {
                     res.status(403).json({
                         success: false,
