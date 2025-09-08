@@ -13,6 +13,20 @@ export enum Messages {
   ACCESS_TOKEN_INVALID = "❌ Access token verification failed.",
   REFRESH_TOKEN_INVALID = "❌ Refresh token verification failed.",
   NO_TOKEN = "❌ No authentication tokens found in the request.",
-  UNAUTHORIZED_ACCESS = "❌ You are not authorized to access this resource."
+  UNAUTHORIZED_ACCESS = "❌ You are not authorized to access this resource.",
 
+  // Workshop Messages
+  CUSTOMER_CREATED = "✅ Customer created successfully.",
+  CUSTOMER_UPDATED = "✅ Customer updated successfully.",
+  CUSTOMER_NOT_FOUND = "❌ Customer not found.",
+  CUSTOMER_ALREADY_EXISTS = "❌ Customer with this unique code already exists.",
+
+  VEHICLE_CREATED = "✅ Vehicle created successfully.",
+  VEHICLE_UPDATED = "✅ Vehicle updated successfully.",
+  VEHICLE_NOT_FOUND = "❌ Vehicle not found.",
+  VEHICLE_ALREADY_EXISTS = "❌ Vehicle with this number already exists.",
+
+  ORDER_CREATED = "✅ Order created successfully.",
+  ORDER_UPDATED = "✅ Order updated successfully.",
+  ORDER_NOT_FOUND = "❌ Order not found."
 }
