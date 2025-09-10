@@ -12,11 +12,14 @@ export const createAccessToken = async (res: Response , payload: TokenPayload) =
         expiresIn: '30m',
         algorithm: 'HS256'
     });
+    
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     res.cookie('accessToken', accessToken, { 
         httpOnly: true,
-        secure: false,
+        secure: isProduction,
         maxAge: 30 * 60 * 1000, // 30 mins
-        sameSite: 'strict',
+        sameSite: isProduction ? "none" : "lax",
         path: '/'
     });
 }
@@ -26,29 +29,36 @@ export const createRefreshToken = async (res: Response , payload: TokenPayload) 
         expiresIn: "10d",
         algorithm: 'HS256'
     });
+    
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     res.cookie('refreshToken', refreshToken, { 
         httpOnly: true,
-        secure: false,
+        secure: isProduction,
         maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
-        sameSite: 'strict',
+        sameSite: isProduction ? "none" : "lax",
         path: '/'
     });
 }
 
 export const clearRefreshToken = (res: Response) => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     res.clearCookie('refreshToken', {
         httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         path: '/'
     });
 };
 
 export const clearAccessToken = (res: Response) => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     res.clearCookie('accessToken', {
         httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         path: '/'
     });
 };
