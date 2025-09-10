@@ -18,9 +18,21 @@ const PORT = process.env.PORT;
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use(express_1.default.urlencoded({ limit: '10mb', extended: true }));
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    process.env.FRONTEND_URL
+];
 app.use((0, cors_1.default)({
-    origin: process.env.FRONTEND_URL,
-    credentials: true
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin) || /^https:\/\/.*\.vercel\.app$/.test(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
 }));
 app.use((0, express_session_1.default)({
     secret: process.env.SESSION_SECRET,
